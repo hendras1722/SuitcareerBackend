@@ -1,7 +1,20 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const logger = require('morgan')
+const bodyParser = require('body-parser')
+const mainNavigation = require('./src/routes')
+const { port } = require('./src/configs')
+const cors = require('cors')
 
-app.get('/', (req, res) => res.send('Hello World'))
+app.listen(port, () => console.log(`This is server running ${port}`))
+app.use(cors('*'))
 
-app.listen(port, () => console.log(`wiih bisa nii http://localhost: ${port}`))
+app.use(logger('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
+
+app.use('/', mainNavigation, (req, res) => {
+    res.send('Connect')
+})

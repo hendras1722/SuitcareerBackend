@@ -54,7 +54,7 @@ module.exports = {
             const result = await style.getEvent(name)
             myHelp.response(response, 200, result)
         } catch (e) {
-            myHelp.response(response, 400, "Gagal Create")
+            myHelp.response(response, 400, "Data Tidak Ditemukan")
         }
     }
 }
